@@ -1,11 +1,6 @@
-const Joi = require('joi');
 const tasksModel = require('../models/tasksModel');
 const errorConstructor = require('../utils/errorConstructor');
-
-const taskSchema = Joi.object({
-    task: Joi.string().required(),
-    status: Joi.string().required(),
-});
+const taskSchema = require('../utils/taskSchemaValidator');
 
 const createTaskService = async (taskData) => {
     const { error } = taskSchema.validate(taskData);
