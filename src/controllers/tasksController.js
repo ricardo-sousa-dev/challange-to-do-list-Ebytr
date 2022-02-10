@@ -24,10 +24,9 @@ const getTasksController = async (req, res, next) => {
 
 const updateTaskController = async (req, res, next) => {
   try {
-    const { user } = req;
     const { id } = req.params;
 
-    const updatedTask = await tasksService.updateTaskService(user.email, id, req.body);
+    const updatedTask = await tasksService.updateTaskService(id, req.body);
 
     return res.status(200).json(updatedTask);
   } catch (err) {

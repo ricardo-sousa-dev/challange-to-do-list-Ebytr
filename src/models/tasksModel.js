@@ -5,11 +5,11 @@ const createTaskModel = async (taskData) => {
     const db = await connect();
 
     const taskInserted = await db.collection('tasks')
-        .insertOne( taskData)
+        .insertOne(taskData)
         .then((result) => result.insertedId);
     console.log('>>>>>>>>>>>>> ~ taskInserted', taskInserted);
 
-    return {...taskData};
+    return { ...taskData };
 };
 
 const getTasksModel = async () => {
@@ -20,15 +20,27 @@ const getTasksModel = async () => {
     return tasks;
 };
 
-const updateTaskModel = async (idTask, changesTasks, userId) => {
+const getTaskIdModel = async (idTask) => {
+    // https: //mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html#objectid-isvalid
+    // https: //mongodb.github.io/node-mongodb-native/2.2/api/ObjectID.html
+    if (!ObjectId.isValid(idTask)) return null;
+
     const db = await connect();
 
-    const { name, ingredients, preparation } = changesTasks;
+    const task = await db.collection('tasks').findOne({ _id: ObjectId(idTask) });
+
+    return task;
+};
+
+const updateTaskModel = async (idTask, changesTasks) => {
+    const db = await connect();
+
+    const { task, status } = changesTasks;
 
     await db.collection('tasks')
         .updateOne({
             _id: ObjectId(idTask),
-        }, { $set: { name, ingredients, preparation, userId } });
+        }, { $set: { task, status } });
 
     const taskUpdated = await db.collection('tasks').findOne({ _id: ObjectId(idTask) });
 
@@ -48,4 +60,5 @@ module.exports = {
     getTasksModel,
     updateTaskModel,
     deleteTaskModel,
+    getTaskIdModel
 };

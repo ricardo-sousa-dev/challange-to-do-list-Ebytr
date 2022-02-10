@@ -24,16 +24,12 @@ const getTasksService = async () => {
     return tasks;
 };
 
-const updateTaskService = async (userEmail, idTask, changesTasks) => {
+const updateTaskService = async (idTask, changesTasks) => {
     const exists = await tasksModel.getTaskIdModel(idTask);
     if (!exists) { throw errorConstructor(422, 'Task not exists'); }
 
-    const verifyUser = await usersModel.findUserByEmailModel(userEmail);
-    if (!verifyUser) { throw errorConstructor(422, 'User not exists'); }
-
-    const { _id } = verifyUser;
     const updatedTask = await tasksModel
-        .updateTaskModel(idTask, changesTasks, _id);
+        .updateTaskModel(idTask, changesTasks);
 
     return updatedTask;
 };
