@@ -1,7 +1,7 @@
 const express = require('express'); // import express module
 require('dotenv').config(); // import dotenv to use .env file
 const bodyParser = require('body-parser'); // import body-parser to parse the body of the request
-const { errorHandler } = require('../middlewares'); // import errorHandler - middleware of error
+const errorHandler = require('../middlewares/errorHandler'); // import errorHandler - middleware of error
 
 const app = express(); // create an instance of express
 const router = require('../routes'); // import router from routes
