@@ -7,11 +7,11 @@ const taskSchema = Joi.object({
     status: Joi.string().required(),
 });
 
-const createTaskService = async (taskData, user) => {
+const createTaskService = async (taskData) => {
     const { error } = taskSchema.validate(taskData);
     if (error) { throw errorConstructor(400, 'Invalid entries. Try again.'); }
 
-    const newTask = await tasksModel.createTaskModel(taskData, user);
+    const newTask = await tasksModel.createTaskModel(taskData);
 
     return newTask;
 };

@@ -1,17 +1,12 @@
 const tasksService = require('../services/tasksService');
 
-const HOST = process.env.HOST || 'localhost'; // get HOST from .env file
-const PORT = process.env.PORT || 3000; // get PORT from .env file
-
 const createTaskController = async (req, res, next) => {
   try {
     const taskData = req.body;
 
-    const { user } = req;
+    const task = await tasksService.createTaskService(taskData);
 
-    const task = await tasksService.createTaskService(taskData, user);
-
-    return res.status(201).json({ task });
+    return res.status(201).json( task );
   } catch (err) {
     return next(err);
   }
