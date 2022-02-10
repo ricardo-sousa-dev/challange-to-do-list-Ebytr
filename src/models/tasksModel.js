@@ -43,7 +43,7 @@ const updateTaskModel = async (idTask, changesTasks) => {
 
   const updatedTask = await db.collection('tasks').findOne({ _id: ObjectId(idTask) });
 
-  return updatedTask._id;
+  return updatedTask;
 };
 
 const deleteTaskModel = async (idTask) => {

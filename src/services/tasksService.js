@@ -1,9 +1,8 @@
 const tasksModel = require('../models/tasksModel');
-const errorConstructor = require('../utils/errorConstructor');
-const taskSchema = require('../utils/taskSchemaValidator');
+const { errorConstructor, taskSchemaValidator } = require('../utils');
 
 const createTaskService = async (taskData) => {
-  const { error } = taskSchema.validate(taskData);
+  const { error } = taskSchemaValidator.validate(taskData);
   if (error) { throw errorConstructor(400, 'Invalid entries. Try again.'); }
 
   const newTask = await tasksModel.createTaskModel(taskData);
