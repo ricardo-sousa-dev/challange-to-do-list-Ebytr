@@ -36,17 +36,15 @@ const updateTaskController = async (req, res, next) => {
 
 const deleteTaskController = async (req, res, next) => {
   try {
-    const { email } = req.user;
     const { id } = req.params;
 
-    const taskDeleted = await tasksService.deleteTaskService(id, email);
+    const deletedTask = await tasksService.deleteTaskService(id);
 
-    return res.status(204).json(taskDeleted);
+    return res.status(204).json(deletedTask);
   } catch (err) {
     return next(err);
   }
 };
-
 
 module.exports = {
   createTaskController,

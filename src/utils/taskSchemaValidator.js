@@ -4,6 +4,6 @@ const Joi = require('joi');
 // https://stackoverflow.com/questions/58408362/how-to-set-custom-error-messages-in-hapi-joi
 
 module.exports = Joi.object({
-    task: Joi.string().required(),
-    status: Joi.string().required(),
+  task: Joi.string().required(),
+  status: Joi.string().required(),
 });

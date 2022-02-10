@@ -1,10 +1,10 @@
 const express = require('express'); // import express module
 
 const {
-    createTaskController,
-    getTasksController,
-    updateTaskController,
-    deleteTaskController,
+  createTaskController,
+  getTasksController,
+  updateTaskController,
+  deleteTaskController,
 } = require('../controllers/tasksController'); // import tasksController
 
 const router = express.Router(); // create an instance of express.Router()
