@@ -68,4 +68,38 @@ describe('POST /tasks', () => {
     // expect(response.message).to.equal('Invalid entries. Try again.');
   });
 
+  it('Verifica se é possível cadastrar uma nova tarefa sem o campo "task', async () => {
+
+    const newTask = {
+      status: 'pronto'
+    }
+
+    const response = await chai.request(server)
+      .post('/tasks')
+      .send(newTask)
+      .then((response) => response);
+
+    expect(response).to.have.status(400);
+    // expect(response).to.be.a('object');
+    // expect(response.body).to.have.property('message');
+    // expect(response.message).to.equal('Invalid entries. Try again.');
+  })
+
+  it('Verifica se é possível cadastrar uma nova tarefa sem o campo "status"', async () => {
+
+    const newTask = {
+      task: 'Atualizar meu Linkedin'
+    }
+
+    const response = await chai.request(server)
+      .post('/tasks')
+      .send(newTask)
+      .then((response) => response);
+
+    expect(response).to.have.status(400);
+    expect(response).to.be.a('object');
+    expect(response.body).to.have.property('message');
+    expect(response.message).to.equal('Invalid entries. Try again.');
+  });
+
 });
