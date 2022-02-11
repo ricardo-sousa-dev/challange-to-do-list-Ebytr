@@ -6,7 +6,7 @@ const createTaskModel = async (taskData) => {
 
   await db.collection('tasks')
     .insertOne(taskData)
-    .then((result) => result.insertedId);
+    // .then((result) => result.insertedId);
 
   return { ...taskData };
 };

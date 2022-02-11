@@ -4,9 +4,9 @@ const createTaskController = async (req, res, next) => {
   try {
     const taskData = req.body;
 
-    const task = await tasksService.createTaskService(taskData);
+    const newTask = await tasksService.createTaskService(taskData);
 
-    return res.status(201).json( task );
+    return res.status(201).json( newTask );
   } catch (err) {
     return next(err);
   }

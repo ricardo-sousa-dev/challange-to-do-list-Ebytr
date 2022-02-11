@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node .",
     "dev": "nodemon .",
-    "lint": "eslint --no-inline-config --ext .js,.jsx --no-error-on-unmatched-pattern -c .eslintrc.json ."
+    "lint": "eslint --no-inline-config --ext .js,.jsx --no-error-on-unmatched-pattern -c .eslintrc.json .",
+    "test": "mocha ./src/test/*$NAME*.test.js --exit",
+    "test:coverage": "nyc --all npm run dev:test",
+    "test:coverage:json": "nyc --all --reporter=json-summary npm run dev:test"
   },
   "keywords": [],
   "author": "",

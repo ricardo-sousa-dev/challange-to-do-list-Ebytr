@@ -1,14 +1,10 @@
 const chai = require('chai');
-const { expect } = chai;
-const sinon = require('sinon');
-const server = require('../api/app');
 const chaiHttp = require('chai-http');
+const sinon = require('sinon');
 const { MongoClient } = require('mongodb');
+const server = require('../api/app');
 const connectionMock = require('./connectionMock');
-
-const HOST = process.env.HOST || 'localhost'; // get HOST from .env file
-const PORT = process.env.PORT || 3000; // get PORT from .env file
-const DB_NAME = process.env.DB_NAME || 'ToDoEbytr'; // get DB_NAME from .env file
+const { expect } = chai;
 
 describe('POST /tasks', () => {
   let db;
@@ -19,7 +15,7 @@ describe('POST /tasks', () => {
     sinon.stub(MongoClient, 'connect')
       .resolves(connection);
 
-    db = connection.db(DB_NAME);
+    db = connection.db('ToDoEbytr');
     chai.use(chaiHttp);
   });
 
@@ -39,10 +35,8 @@ describe('POST /tasks', () => {
 
     const newTask = {
       task: 'Atualizar meu Linkedin',
-      status: 'pendente',
+      status: 'pendente'
     }
-
-    db.collection('tasks').insertOne(newTask);
 
     const response = await chai.request(server)
       .post('/tasks')
@@ -53,5 +47,6 @@ describe('POST /tasks', () => {
     expect(response.body).to.be.a('object');
     expect(response.body).to.have.property('task');
     expect(response.body).to.have.property('status');
+    expect(response.body).to.have.property('_id');
   });
 });
