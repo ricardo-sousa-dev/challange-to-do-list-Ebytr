@@ -5,5 +5,5 @@ const Joi = require('joi');
 
 module.exports = Joi.object({
   task: Joi.string().required(),
-  status: Joi.string().required(),
+  status: Joi.string().valid('pendente', 'em andamento').required(),
 });

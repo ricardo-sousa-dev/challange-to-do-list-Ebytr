@@ -49,4 +49,23 @@ describe('POST /tasks', () => {
     expect(response.body).to.have.property('status');
     expect(response.body).to.have.property('_id');
   });
+
+  it('Verifica se é possível cadastrar nova tarefa com status "pronto"', async () => {
+
+    const newTask = {
+      task: 'Atualizar foto do Perfil no Linkedin',
+      status: 'pronto'
+    }
+
+    const response = await chai.request(server)
+      .post('/tasks')
+      .send(newTask)
+      .then((response) => response);
+
+    expect(response).to.have.status(400);
+    // expect(response).to.be.a('object');
+    // expect(response.body).to.have.property('message');
+    // expect(response.message).to.equal('Invalid entries. Try again.');
+  });
+
 });
