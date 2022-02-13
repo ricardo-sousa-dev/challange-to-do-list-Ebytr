@@ -13,8 +13,6 @@ const createTaskService = async (taskData) => {
 const getTasksService = async () => {
   const tasks = await tasksModel.getTasksModel();
 
-  if (tasks.length === 0) { throw errorConstructor(422, 'List tasks empty'); }
-
   return tasks;
 };
 

@@ -159,19 +159,15 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
       expect(response.body).to.have.lengthOf(2);
     });
 
-    // it('Verifica se retorna erro ao tentar listar tarefas quando não há tarefas cadastradas:', async () => {
-    //     await db.collection('tasks').deleteMany({});
+    it('Verifica se retorna erro ao tentar listar tarefas quando não há tarefas cadastradas:', async () => {
 
-    //   const response = await chai.request(server)
-    //     .get('/tasks')
-    //     .then((response) => response);
-    //   console.log('>>>>>>>>>>>>> ~ response2', response.body);
+      const response = await chai.request(server)
+        .get('/tasks')
+        .then((response) => response);
 
-    //   expect(response).to.have.status(422);
-    //   expect(response.body).to.be.a('object');
-    //   expect(response.body).to.have.property('message');
-    //   expect(response.message).to.equal('List tasks empty');
-    // })
+      expect(response).to.have.status(200);
+      expect([]).to.be.empty;
+    })
   });
 
   describe('PUT /tasks/:id - Alteração de uma tarefa:', () => {
