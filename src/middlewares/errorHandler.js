@@ -1,5 +1,5 @@
-const errorHandler = (err, req, res) => {
-  const { message } = err;
+const errorHandler = (err, req, res, next) => {
+const { message } = err;
     
   if (err.status) {
     return res.status(err.status).json({ message });
