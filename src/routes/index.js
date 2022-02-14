@@ -19,7 +19,7 @@ router.post('/tasks', createTaskController);
 router.get('/tasks', getTasksController);
 router.put('/tasks/:id', updateTaskController);
 router.delete('/tasks/:id', deleteTaskController);
-router.post('/user/new', createUserController);
-router.post('user/login', loginUserController)
+router.post('/user', createUserController);
+router.post('/login', loginUserController)
 
 module.exports = router; // export router

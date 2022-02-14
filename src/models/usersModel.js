@@ -7,7 +7,6 @@ const createUserModel = async (user) => {
   const userInserted = await db.collection('users')
     .insertOne(user)
     .then((result) => result.insertedId);
-  console.log('>>>>>>>>>>>>> ~ userInserted', userInserted);
 
   return userInserted;
 };
