@@ -1,5 +1,5 @@
 const usersModel = require('../models/usersModel');
-const { errorConstructor, userSchemaValidator } = require('../utils');
+const { errorConstructor, userSchemaValidator, loginSchemaValidator } = require('../utils');
 
 const createUserService = async (user) => {
   const { email, password, name } = user;
