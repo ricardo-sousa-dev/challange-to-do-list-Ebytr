@@ -6,12 +6,8 @@ const createUserModel = async (user) => {
 
   const userInserted = await db.collection('users')
     .insertOne(user)
-    .then((result) => ({
-      name: result.ops[ 0 ].name,
-      email: result.ops[ 0 ].email,
-      role: result.ops[ 0 ].role,
-      _id: result.insertedId,
-    }));
+    .then((result) => result.insertedId);
+  console.log('>>>>>>>>>>>>> ~ userInserted', userInserted);
 
   return userInserted;
 };

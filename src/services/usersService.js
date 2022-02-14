@@ -7,8 +7,9 @@ const createUserService = async (user) => {
   const { error } = userSchemaValidator.validate({ email, password, name });
   if (error) { throw errorConstructor(400, 'Invalid entries. Try again.'); }
 
+console.log('passou')
   const userExists = await usersModel.findUserByEmailModel(email);
-  if (userExists) { throw errorConstructor(409, 'Email already registered'); }
+  if (userExists) { throw errorConstructor(409, 'User already registered'); }
 
   const newUser = await usersModel.createUserModel(user);
 

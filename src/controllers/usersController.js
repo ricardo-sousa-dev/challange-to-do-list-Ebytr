@@ -5,10 +5,10 @@ const createUserController = async (req, res, next) => {
         const { name, email, password } = req.body;
         const role = 'user';
 
-        const user = await usersService
+        const userId = await usersService
             .createUserService({ email, password, name, role });
 
-        return res.status(201).json({ user });
+        return res.status(201).json( {userId} );
     } catch (err) {
         return next(err);
     }
