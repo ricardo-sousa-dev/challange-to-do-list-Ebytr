@@ -6,15 +6,15 @@ const createTaskModel = async (taskData) => {
 
   await db.collection('tasks')
     .insertOne(taskData)
-    // .then((result) => result.insertedId);
 
   return { ...taskData };
 };
 
-const getTasksModel = async () => {
+const getTasksModel = async (userId) => {
   const db = await connect();
 
-  const tasks = await db.collection('tasks').find().toArray();
+  const tasks = await db.collection('tasks')
+ .find({ userId }).toArray();
 
   return tasks;
 };

@@ -3,8 +3,9 @@ const tasksService = require('../services/tasksService');
 const createTaskController = async (req, res, next) => {
   try {
     const taskData = req.body;
+    const { _id: userId } = req.user;
 
-    const newTask = await tasksService.createTaskService(taskData);
+    const newTask = await tasksService.createTaskService({ ...taskData, userId });
 
     return res.status(201).json(newTask);
   } catch (err) {
@@ -14,7 +15,8 @@ const createTaskController = async (req, res, next) => {
 
 const getTasksController = async (req, res, next) => {
   try {
-    const tasks = await tasksService.getTasksService();
+    const { _id: userId } = req.user;
+    const tasks = await tasksService.getTasksService(userId);
 
     return res.status(200).json(tasks);
   } catch (err) {

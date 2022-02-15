@@ -1,4 +1,5 @@
 const express = require('express'); // import express module
+const { auth } = require('../middlewares'); // import auth and multerMiddleware - middlewares
 
 const {
   createTaskController,
@@ -15,8 +16,8 @@ const {
 const router = express.Router(); // create an instance of express.Router()
 
 // Routes for tasks
-router.post('/tasks', createTaskController);
-router.get('/tasks', getTasksController);
+router.post('/tasks', auth, createTaskController);
+router.get('/tasks', auth, getTasksController);
 router.put('/tasks/:id', updateTaskController);
 router.delete('/tasks/:id', deleteTaskController);
 router.post('/user', createUserController);
