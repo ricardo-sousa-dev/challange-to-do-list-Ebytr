@@ -22,7 +22,9 @@ const loginUserService = async (login) => {
   const token = await usersModel.tokenGenerateModel(login);
   if (!token) { throw errorConstructor(401, 'Incorrect username or password'); }
 
-  return token;
+  const user = await usersModel.findUserByEmailModel(login.email);
+
+  return {token, user};
 };
 
 module.exports = {

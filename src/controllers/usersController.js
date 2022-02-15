@@ -16,9 +16,10 @@ const createUserController = async (req, res, next) => {
 
 const loginUserController = async (req, res, next) => {
    try {
-        const token = await usersService.loginUserService(req.body);
+        const {token, user} = await usersService.loginUserService(req.body);
+        console.log('>>>>>>>>>>>>> ~ {token, user}', {token, user});
 
-        return res.status(200).json({ token });
+        return res.status(200).json({token, user});
     } catch (err) {
         return next(err);
     }
