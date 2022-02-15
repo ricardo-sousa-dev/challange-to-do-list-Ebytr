@@ -20,7 +20,6 @@ const loginUserController = async (req, res, next) => {
 
         return res.status(200).json({ token });
     } catch (err) {
-        console.log('>>>>>>>>>>>>> ~ err', err);
         return next(err);
     }
 };

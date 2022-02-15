@@ -12,7 +12,7 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
     let db;
 
     before(async () => {
-      connection = await connectionMock();
+      const connection = await connectionMock();
 
       sinon.stub(MongoClient, 'connect')
         .resolves(connection);
