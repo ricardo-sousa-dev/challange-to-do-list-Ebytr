@@ -39,7 +39,7 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de usu
 
       const newUser = {
         name: "João",
-        email: "joao@gmail.com",
+        email: "joaozinho@gmail.com",
         password: "1234"
       }
 
