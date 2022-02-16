@@ -11,7 +11,6 @@ const createTaskController = async (req, res, next) => {
 
     return res.status(201).json(newTask);
   } catch (err) {
-    console.log('>>>>>>>>>>>>> ~ err', err);
     next(err);
   }
 };

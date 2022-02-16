@@ -23,10 +23,12 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de usu
 
     beforeEach(async () => {
       await db.collection('users').deleteMany({});
+      await db.collection('tasks').deleteMany({});
     });
 
     afterEach(async () => {
       await db.collection('users').deleteMany({});
+      await db.collection('tasks').deleteMany({});
     });
 
     after(async () => {

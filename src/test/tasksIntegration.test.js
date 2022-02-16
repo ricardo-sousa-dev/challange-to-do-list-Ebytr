@@ -23,10 +23,12 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
     beforeEach(async () => {
       await db.collection('tasks').deleteMany({});
+      await db.collection('users').deleteMany({});
     });
 
     afterEach(async () => {
       await db.collection('tasks').deleteMany({});
+      await db.collection('users').deleteMany({});
     });
 
     after(async () => {
@@ -35,6 +37,27 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
     it('Verifica se é possível cadastrar nova tarefa', async () => {
 
+      const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
+
       const newTask = {
         task: 'Atualizar meu Linkedin',
         status: 'pendente'
@@ -42,6 +65,7 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
       const response = await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(newTask)
         .then((response) => response);
 
@@ -49,10 +73,33 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
       expect(response.body).to.be.a('object');
       expect(response.body).to.have.property('task');
       expect(response.body).to.have.property('status');
+      expect(response.body).to.have.property('userId');
+      expect(response.body).to.have.property('createdAt');
       expect(response.body).to.have.property('_id');
     });
 
-    it('Verifica se é possível cadastrar nova tarefa com status "pronto"', async () => {
+    it('Verifica se não é possível cadastrar nova tarefa com status "pronto"', async () => {
+
+      const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
 
       const newTask = {
         task: 'Atualizar foto do Perfil no Linkedin',
@@ -61,6 +108,7 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
       const response = await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(newTask)
         .then((response) => response);
 
@@ -70,7 +118,28 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
       expect(response.body.message).to.equal('Invalid entries. Try again.');
     });
 
-    it('Verifica se é possível cadastrar uma nova tarefa sem o campo "task', async () => {
+    it('Verifica se não é possível cadastrar uma nova tarefa sem o campo "task', async () => {
+
+      const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
 
       const newTask = {
         status: 'pronto'
@@ -78,6 +147,7 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
       const response = await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(newTask)
         .then((response) => response);
 
@@ -87,7 +157,28 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
       expect(response.body.message).to.equal('Invalid entries. Try again.');
     })
 
-    it('Verifica se é possível cadastrar uma nova tarefa sem o campo "status"', async () => {
+    it('Verifica se não é possível cadastrar uma nova tarefa sem o campo "status"', async () => {
+
+      const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
 
       const newTask = {
         task: 'Atualizar meu Linkedin'
@@ -95,6 +186,7 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
       const response = await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(newTask)
         .then((response) => response);
 
@@ -120,10 +212,12 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
     beforeEach(async () => {
       await db.collection('tasks').deleteMany({});
+      await db.collection('users').deleteMany({});
     });
 
     afterEach(async () => {
       await db.collection('tasks').deleteMany({});
+      await db.collection('users').deleteMany({});
     });
 
     after(async () => {
@@ -131,6 +225,27 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
     });
 
     it('Verifica se é possível listar todas as tarefas cadastradas:', async () => {
+
+      const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
 
       const task1 = {
         task: 'Atualizar foto do Perfil no Linkedin',
@@ -144,14 +259,17 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
       await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(task1)
 
       await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(task2)
 
       const response = await chai.request(server)
         .get('/tasks')
+        .set('Authorization', token)
         .then((response) => response);
 
       expect(response).to.have.status(200);
@@ -161,8 +279,30 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
     it('Verifica se retorna erro ao tentar listar tarefas quando não há tarefas cadastradas:', async () => {
 
+      const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
+
       const response = await chai.request(server)
         .get('/tasks')
+        .set('Authorization', token)
         .then((response) => response);
 
       expect(response).to.have.status(200);
@@ -185,10 +325,12 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
 
     beforeEach(async () => {
       await db.collection('tasks').deleteMany({});
+      await db.collection('users').deleteMany({});
     });
 
     afterEach(async () => {
       await db.collection('tasks').deleteMany({});
+      await db.collection('users').deleteMany({});
     });
 
     after(async () => {
@@ -196,10 +338,33 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
     });
 
     it('Verifica se é possível alterar o status de uma tarefa:', async () => {
+
+      const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
+
       let task = { task: 'Criar artigo no Linkedin', status: 'pendente' };
 
       const idTask = await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(task)
         .then((response) => response.body._id);
 
@@ -221,10 +386,33 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
     });
 
     it('Verifica se é possível alterar o status de uma tarefa:', async () => {
+
+const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
+
       let task = { task: 'Criar artigo no Linkedin', status: 'pendente' };
 
       const idTask = await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(task)
         .then((response) => response.body._id);
 
@@ -273,10 +461,33 @@ describe('- Testa as todas de criação, leitura, alteração e exclusão de tar
     });
 
     it('Verifica se é possível excluir uma tarefa:', async () => {
+
+const newUser = {
+        name: "João",
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      await chai.request(server)
+        .post('/user')
+        .send(newUser)
+        .then((response) => response);
+
+      const login = {
+        email: "joao@gmail.com",
+        password: "1234"
+      }
+
+      const token = await chai.request(server)
+        .post('/login')
+        .send(login)
+        .then((response) => response.body.token);
+
       let task = { task: 'Criar artigo no Linkedin', status: 'pendente' };
 
       const idTask = await chai.request(server)
         .post('/tasks')
+        .set('Authorization', token)
         .send(task)
         .then((response) => response.body._id);
 
