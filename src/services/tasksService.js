@@ -2,7 +2,6 @@ const tasksModel = require('../models/tasksModel');
 const { errorConstructor, taskSchemaValidator } = require('../utils');
 
 const createTaskService = async (taskData) => {
-console.log('>>>>>>>>>>>>> ~ taskData', taskData);
   const { error } = taskSchemaValidator.validate(taskData);
   if (error) { throw errorConstructor(400, 'Invalid entries. Try again.'); }
 

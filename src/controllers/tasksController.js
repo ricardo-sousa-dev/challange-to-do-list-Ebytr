@@ -4,11 +4,14 @@ const createTaskController = async (req, res, next) => {
   try {
     const taskData = req.body;
     const { _id: userId } = req.user;
+    const date = new Date();
+    const createdAt = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`;
 
-    const newTask = await tasksService.createTaskService({ ...taskData, userId });
+    const newTask = await tasksService.createTaskService({ ...taskData, userId, createdAt });
 
     return res.status(201).json(newTask);
   } catch (err) {
+    console.log('>>>>>>>>>>>>> ~ err', err);
     next(err);
   }
 };

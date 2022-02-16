@@ -7,4 +7,5 @@ module.exports = Joi.object({
   task: Joi.string().required(),
   status: Joi.string().valid('pendente', 'em andamento').required(),
   userId: Joi.string().required(),
+  createdAt: Joi.string().required(),
 });
