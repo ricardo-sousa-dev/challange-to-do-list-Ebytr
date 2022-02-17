@@ -1,18 +1,26 @@
-# Bem-vindos ao Auto Trybe Backend
+# Bem-vindos ao Todo List Ebytr - Backend
 
 ## Contexto
 
 ---
 
-Esse projeto foi desenvolvido para uma vaga de backend na empresa [`XYZ Automóveis`](www.betrybe.com).
+Esse projeto foi desenvolvido para uma vaga de backend na empresa [`Ebytr`](www.betrybe.com).
 
-A proposta era desenvolver uma aplicação backend para uma concessionária de automóveis, abrangindo carros, motos e caminhões.
+A proposta era desenvolver uma aplicação backend de uma Lista de Tarefas para a empresa, com as funcionalidades de criação, edição, leitura e exclusão de tarefas por usuário.
 
-Poucos detalhes foram dados sobre a forma para abordar o projeto. As únicas informações fornecidas foram os campos minimos que a aplicação deveria abordar, sendo elas:
+Os tipos de dados adotados são:
 
-|   Tipo   |  Marca   |  Model   |  Versão  |   Ano    | Quilometragem |
-| :------: | :------: | :------: | :------: | :------: | :-----------: |
-| `string` | `string` | `string` | `string` | `Number` |   `Number`    |
+#### Tarefas
+
+|   Task   |  Status  |  CreatedAt |    id    | 
+| :------: | :------: |  :------:  | :------: | 
+| `string` | `string` |  `string`  | `string` | 
+
+#### Usuário
+
+|  UserId  |  Email   |  Password  |   Name   |   Role   | 
+| :------: | :------: |  :------:  | :------: | :------: | 
+| `string` | `string` |  `string`  | `string` | `string` |
 
 ---
 
