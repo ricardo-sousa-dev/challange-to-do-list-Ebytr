@@ -84,6 +84,7 @@ O banco escolhido para a aplicação foi `Mongodb`, pela agilidade no desenvolvi
 * Implementação de Token de acesso para edição e exclusão de tarefas
 * Implementação de acesso administrador
 * Implementação do Swagger para documentação da API
+* Implementar a instalação do projeto com Docker Compose
 
 ---
 
