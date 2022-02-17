@@ -89,20 +89,10 @@ O banco escolhido para a aplicação foi `Mongodb`, pela agilidade no desenvolvi
 
 ## Contatos
 
-<div style="display: flex; align-items: center; justify-content: space-between;">
-  <div>
-    <h2> Paulo Ricardo Zambelli (Zambs) </h2>
-  <div style="display: flex; align-items: center;">
-    <img src="./images/linkedIn_logo.jpg" alt="LinkedIn" style="width:20px;"/>  /in/paulo-ricardo-zambelli-taveira 
-  </div>
-  <br/>
-  <div style="display: flex;align-items: center;">
-    <img src="./images/github_logo.png" alt="LinkedIn" style="width:20px;"/> https://github.com/pauloricardoz
-  </div>
-  <br/>
-  Email: trybe.przt@gmail.com
-  </div>
-    <img src="./images/Paulo Ricardo Zambelli Taveira0003.jpg" alt="LinkedIn" style="width:100px;"/> 
-  </div>
-<br/>
+#### Ricardo Sousa :smiley:
+
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/rwmsousa/)](https://www.linkedin.com/in/rwmsousa/) [![Gmail Badge](https://img.shields.io/badge/-Gmail-D14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:rwmsousa@gmail.com)](mailto:rwmsousa@gmail.com)
+
+
+
 
