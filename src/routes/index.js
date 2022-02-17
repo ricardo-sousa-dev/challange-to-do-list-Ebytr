@@ -16,8 +16,8 @@ const {
 const router = express.Router(); // create an instance of express.Router()
 
 // Routes for tasks
-router.post('/tasks', auth, createTaskController);
 router.get('/tasks', auth, getTasksController);
+router.post('/tasks', auth, createTaskController);
 router.put('/tasks/:id', updateTaskController);
 router.delete('/tasks/:id', deleteTaskController);
 router.post('/user', createUserController);
